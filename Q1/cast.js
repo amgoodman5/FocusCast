@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 
 
-$.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data, getUrl, getCategoryID, getImage, getCategoryUrl, getCategoryTitle) {
+$.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
 
 $appendCategoryTitle (data)
 $getCategoryUrl(data)
@@ -33,14 +33,21 @@ $getImg(data)
 function $appendCategoryTitle (data){
   for (var i = 0; i < data.podcasts.length; i++) {
   var getCategoryTitle = data.podcasts[i].title;
-  $('select').append(getCategoryTitle))
+var x =  $('.dropdown-content li').append('<option>' + getCategoryTitle + '</option>');
+console.log(x)
+
+
 
 }
 }
+
+
+
 function $getCategoryUrl(data){
   for (var i = 0; i < data.podcasts.length; i++) {
    var $getUrlId = data.podcasts[i].podcasts_url;
-    var $getCurl  = "https://feedwrangler.net" + getUrlId;
+    var $getCurl  = "https://feedwrangler.net" + $getUrlId;
+
 
 }
 }
@@ -48,15 +55,14 @@ function $getCategoryUrl(data){
 function $getCategoryId(data){
   for (var i = 0; i < data.podcasts.length; i++) {
   var $getCatId = data.podcasts[i].category_id;
+  console.log($getCatId);
 
 }
 }
 function $getImg(data){
   for (var i = 0; i < data.podcasts.length; i++) {
 var $getImage = data.podcasts[i].image_url
-if (select === data[i].title) {
-        image = data[i].img
-        $('.role-preview').attr('src', image)
+console.log($getImage);
 }
 }
 // $.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
