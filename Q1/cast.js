@@ -19,10 +19,12 @@ $(document).ready(function() {
 
 $.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
 
-$appendCategoryTitle (data)
-$getCategoryUrl(data)
-$getCategoryId(data)
-$getImg(data)
+    $appendCategoryTitle(data)
+    $getCategoryUrl(data)
+    $getCategoryId(data)
+    $getImg(data)
+    $('select').material_select();
+
 
 
 
@@ -30,40 +32,51 @@ $getImg(data)
     // var $getCategoryUrl = "https://feedwrangler.net" + getUrl;
 
 })
-function $appendCategoryTitle (data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-  var getCategoryTitle = data.podcasts[i].title;
-var x =  $('.dropdown-content li').append('<option>' + getCategoryTitle + '</option>');
-console.log(x)
+
+function $appendCategoryTitle(data) {
+
+    for (var i = 0; i < data.podcasts.length; i++) {
+     $("select").append( '<option>' + data.podcasts[i].title + '</option>' );
+
+          }
+      $('select').material_select();
+
+
+      //
+      // $("select").append( "<option>'" + (i)  + data.podcasts[i].title + "'</option>"  );
+      //
+      //      }
+      //  $('select').material_select();
 
 
 
-}
-}
-
-
-
-function $getCategoryUrl(data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-   var $getUrlId = data.podcasts[i].podcasts_url;
-    var $getCurl  = "https://feedwrangler.net" + $getUrlId;
-
-
-}
-}
-
-function $getCategoryId(data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-  var $getCatId = data.podcasts[i].category_id;
-  console.log($getCatId);
 
 }
+
+
+
+function $getCategoryUrl(data) {
+    for (var i = 0; i < data.podcasts.length; i++) {
+        var $getUrlId = data.podcasts[i].podcasts_url;
+        var $getCurl = "https://feedwrangler.net" + $getUrlId;
+
+
+    }
 }
-function $getImg(data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-var $getImage = data.podcasts[i].image_url
-console.log($getImage);
+
+function $getCategoryId(data) {
+    for (var i = 0; i < data.podcasts.length; i++) {
+        var $getCatId = data.podcasts[i].category_id;
+
+
+    }
 }
+
+function $getImg(data) {
+    for (var i = 0; i < data.podcasts.length; i++) {
+        var $getImage = data.podcasts[i].image_url
+
+    }
 }
 // $.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
 //     for (var i = 0; i < data.podcasts.length; i++) {
