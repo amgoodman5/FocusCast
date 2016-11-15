@@ -44,9 +44,21 @@ getPodCast(selected[i])
 
 });
 function getPodCast(url){
+  var url = "https://feedwrangler.net" + url;
+  $.get(url, function(data){
+  for (var i = 0; i < data.podcasts.length; i++) {
+    $('.show').append('<h2>' + data.podcasts[i].title + '</h2>')
+  }
 
-$.get(url){
-  $('.show').append('<h2>"' + data.podcasts[i].title +' "</h2>');
+
+  })
+
+
+
+
+  //call url//
+  //branch through and get title image and url//
+  //display elements in each category//
 
 }
 
