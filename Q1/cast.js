@@ -44,9 +44,13 @@ getPodCast(selected[i])
 
 });
 function getPodCast(url){
-console.log(url)
+
+$.get(url){
+  $('.show').append('<h2>"' + data.podcasts[i].title +' "</h2>');
 
 }
+
+
 
 
 function $getCategoryUrl(data, $appendCategoryTitle) {
