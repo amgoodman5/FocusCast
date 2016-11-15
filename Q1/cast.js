@@ -17,75 +17,84 @@ $(document).ready(function() {
 
 
 
-$.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data, getUrl, getCategoryID, getImage, getCategoryUrl, getCategoryTitle) {
+$.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
 
-$appendCategoryTitle (data)
-$getCategoryUrl(data)
-$getCategoryId(data)
-$getImg(data)
+    $appendCategoryToForm(data)
+    $getCategoryUrl(data)
+    $getCategoryId(data)
+    $getImg(data)
+    $('select').material_select();
 
 
-
-    // var $getImage = data.podcasts[i].image_url
-    // var $getCategoryUrl = "https://feedwrangler.net" + getUrl;
 
 })
-function $appendCategoryTitle (data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-  var getCategoryTitle = data.podcasts[i].title;
-  $('select').append(getCategoryTitle))
-
-}
-}
-function $getCategoryUrl(data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-   var $getUrlId = data.podcasts[i].podcasts_url;
-    var $getCurl  = "https://feedwrangler.net" + getUrlId;
-
-}
+function $appendCategoryToForm(data) {
+    for (var i = 0; i < data.podcasts.length; i++) {
+     var title =  $('select').append( '<option value="' + data.podcasts[i].podcasts_url +'" > '  + data.podcasts[i].title + '</option>' );
+   }
 }
 
-function $getCategoryId(data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-  var $getCatId = data.podcasts[i].category_id;
-
-}
-}
-function $getImg(data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-var $getImage = data.podcasts[i].image_url
-if (select === data[i].title) {
-        image = data[i].img
-        $('.role-preview').attr('src', image)
-}
-}
-// $.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
-//     for (var i = 0; i < data.podcasts.length; i++) {
-// var $getCategoryTitle = data.podcasts[i].title;
-// var $option = $('<option value ="' + $getCategoryTitle + '">');
-// console.log($option);
-// $option.text($getCategoryTitle);
-//         $('select').append($option).innerHTML;
-//     }
-// });
 
 
-// <div class="input-field col s12">
-//    <select multiple>
-//      <option value="" disabled selected>Choose your option</option>
-//      <option value="1">Option 1</option>
-//      <option value="2">Option 2</option>
-//      <option value="3">Option 3</option>
-//    </select>
-//    <label>Materialize Multiple Select</label>
-//  </div>
+$( "select" ).change(function() {
+var selected = $(this).val();
+for (var i = 0; i < selected.length; i++) {
+getPodCast(selected[i])
+}
 
-// for (var i = 0; i < data.length; i++) {
-//         var $option = $('<option value ="' + data[i].title + '">');
-//
-//
-// //     }
-// //     $('select').on('change', function() {
+});
+function getPodCast(url){
+console.log(url)
+
+}
+
+
+function $getCategoryUrl(data, $appendCategoryTitle) {
+    for (var i = 0; i < data.podcasts.length; i++){
+        var $title = $appendCategoryTitle;
+        var $getUrlId = data.podcasts[i].podcasts_url;
+        var $getCurl = "https://feedwrangler.net" + $getUrlId;
+
+
+
+
+    }
+}
+
+function $getCategoryId(data) {
+    for (var i = 0; i < data.podcasts.length; i++) {
+        var $getCatId = data.podcasts[i].category_id;
+
+
+    }
+}
+
+function $getImg(data) {
+    for (var i = 0; i < data.podcasts.length; i++) {
+        var $getImage = data.podcasts[i].image_url
+
+    }
+}
+
+
+
+// function displayResults(results) {
+//   var $movies = $('.movies');
+//   for (var i = 0; i < results.Search.length; i++) {
+//     var $p = $('<p data-imdbid="' + results.Search[i].imdbID + '">' + results.Search[i].Title + '</p>');
+//     $p.click(showMovieDetails);
+//     $movies.append($p);
+//     moviesByID[results.Search[i].imdbID] = results.Search[i];
+//   }
+// }
+
+
+
+
+
+
+// // //     }
+//     $('select').on('change', function() {
 //         if ($('#role option:selected').val() === 'Tank') {
 //             $('img').attr('src', data[0].img);
 //         } else if ($('#role option:selected').val() === 'Support') {
@@ -96,6 +105,18 @@ if (select === data[i].title) {
 //             $('img').attr('src', data[3].img);
 //         }
 //     });
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
 //
 // });
 // $('.save').click(function(){
