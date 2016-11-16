@@ -16,71 +16,50 @@ $(document).ready(function() {
 
 
 
+$.get("https://galvanize-cors.herokuapp.com/https://feedwrangler.net/api/v2/podcasts/categories?client_key=b5d42c0169eda03e135efd59042b79d2", function(category) {
 
-$.get("https://feedwrangler.net/api/v2/podcasts/categories?client_key=b5d42c0169eda03e135efd59042b79d2", function(data) {
-
-    $appendCategoryToForm(data)
-    $getCategoryUrl(data)
-    $getCategoryId(data)
-    $getImg(data)
+    $appendCategoryToForm(category)
+    $returnSelected()
     $('select').material_select();
 
 
 
-})
+    function $appendCategoryToForm(category) {
+        for (var i = 0; i < category.podcasts.length; i++) {
+            var option = '<option value="' +
+                category.podcasts[i].podcasts_url + '" > ' +
+                category.podcasts[i].title + '</option>';
+                // $getPodCast(category.podcasts[i].podcasts_url)
+            $('select').append(option)
 
-function $appendCategoryToForm(data) {
-    for (var i = 0; i < data.podcasts.length; i++) {
-        var title = $('select').append('<option value="' + data.podcasts[i].podcasts_url + '" > ' + data.podcasts[i].title + '</option>');
-    }
-}
-
-$("select").change(function() {
-    var selected = $(this).val();
-    for (var i = 0; i < selected.length; i++) {
-        getPodCast(selected[i])
-    }
-
-});
-
-function getPodCast(url) {
-    event.preventDefault();
-    var url = "https://feedwrangler.net" + url;
-    $.get(url, function(data) {
-        for (var i = 0; i < 3; i++) {
-
-            $('.show').append(`<div class="card-panel orange accent-4 col s4">` +
-                data.podcasts[i].title +
-                `<a href = ` + data.podcasts[i].feed_url + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >test</a>` +
-                `<img src = ` + data.podcasts[i].image_url + ` class= "responsive">` +
-                `</div>`)
         }
-    })
-}
-
-
-
-
-function $getCategoryUrl(data, $appendCategoryTitle) {
-    for (var i = 0; i < data.podcasts.length; i++) {
-        var $title = $appendCategoryTitle;
-        var $getUrlId = data.podcasts[i].podcasts_url;
-        var $getCurl = "https://feedwrangler.net" + $getUrlId;
-
     }
-}
 
-function $getCategoryId(data) {
-    for (var i = 0; i < data.podcasts.length; i++) {
-        var $getCatId = data.podcasts[i].category_id;
+    function $returnSelected() {
+        $("select").change(function() {
+            var selected = $(this).val();
+            for (var i = 0; i < selected.length; i++) {
+                $getPodCast(selected[i])
+            }
 
-
+        });
     }
-}
 
-function $getImg(data) {
-    for (var i = 0; i < data.podcasts.length; i++) {
-        var $getImage = data.podcasts[i].image_url
+    function $getPodCast(url) {
+      console.log(url)
+        event.preventDefault();
+        var url = "https://galvanize-cors.herokuapp.com/https://feedwrangler.net/" + url;
+        $.get(url, function(data) {
+            for (var i = 0; i < 3; i++) {
+              var image = `<img src = `  + data.podcasts[i].image_url +  `  class= "responsive">`;
+               var feed = data.podcasts[i].feed_url;
+               var titles = `<h2 class = "card-title">` + data.podcasts[i].title  + `</h2>`;
+               var button = `<a href = ` + data.podcasts[i].feed_url + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >test</a>`;
+                var card =   `<div class="row">` + ` <div class="col s12 m4 l4 align-center">` + `<div class="card">` +   `<div class="card-image">` +  image + titles + `<div class="card-action">` + button;
 
+                $('.show').append(card);
+
+            }
+        })
     }
-}
+})
