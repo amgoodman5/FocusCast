@@ -34,8 +34,6 @@ function $appendCategoryToForm(data) {
    }
 }
 
-
-
 $( "select" ).change(function() {
 var selected = $(this).val();
 for (var i = 0; i < selected.length; i++) {
@@ -44,10 +42,19 @@ getPodCast(selected[i])
 
 });
 function getPodCast(url){
+  event.preventDefault();
   var url = "https://feedwrangler.net" + url;
   $.get(url, function(data){
-  for (var i = 0; i < data.podcasts.length; i++) {
-    $('.show').append('<h2>' + data.podcasts[i].title + '</h2>')
+
+  for (var i = 0; i < 3 ; i++) {
+
+    $('.show').append(`<div class="card-panel orange accent-4 col s4">`
+    + data.podcasts[i].title + `<a href = ` +  data.podcasts[i].feed_url + `>test</a>` +
+       `<img src = ` + data.podcasts[i].image_url + ` class= "responsive">`
+       +`</div>`)
+
+
+
   }
 
 
@@ -56,9 +63,7 @@ function getPodCast(url){
 
 
 
-  //call url//
-  //branch through and get title image and url//
-  //display elements in each category//
+
 
 }
 
