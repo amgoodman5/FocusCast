@@ -17,7 +17,7 @@ $(document).ready(function() {
 
 
 
-$.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
+$.get("https://feedwrangler.net/api/v2/podcasts/categories?client_key=b5d42c0169eda03e135efd59042b79d2", function(data) {
 
     $appendCategoryToForm(data)
     $getCategoryUrl(data)
@@ -28,56 +28,44 @@ $.get('https://feedwrangler.net/api/v2/podcasts/categories', function(data) {
 
 
 })
+
 function $appendCategoryToForm(data) {
     for (var i = 0; i < data.podcasts.length; i++) {
-     var title =  $('select').append( '<option value="' + data.podcasts[i].podcasts_url +'" > '  + data.podcasts[i].title + '</option>' );
-   }
+        var title = $('select').append('<option value="' + data.podcasts[i].podcasts_url + '" > ' + data.podcasts[i].title + '</option>');
+    }
 }
 
-$( "select" ).change(function() {
-var selected = $(this).val();
-for (var i = 0; i < selected.length; i++) {
-getPodCast(selected[i])
-}
+$("select").change(function() {
+    var selected = $(this).val();
+    for (var i = 0; i < selected.length; i++) {
+        getPodCast(selected[i])
+    }
 
 });
-function getPodCast(url){
-  event.preventDefault();
-  var url = "https://feedwrangler.net" + url;
-  $.get(url, function(data){
 
-  for (var i = 0; i < 3 ; i++) {
+function getPodCast(url) {
+    event.preventDefault();
+    var url = "https://feedwrangler.net" + url;
+    $.get(url, function(data) {
+        for (var i = 0; i < 3; i++) {
 
-    $('.show').append(`<div class="card-panel orange accent-4 col s4">`
-    + data.podcasts[i].title + `<a href = ` +  data.podcasts[i].feed_url + `>test</a>` +
-       `<img src = ` + data.podcasts[i].image_url + ` class= "responsive">`
-       +`</div>`)
-
-
-
-  }
-
-
-  })
-
-
-
-
-
-
+            $('.show').append(`<div class="card-panel orange accent-4 col s4">` +
+                data.podcasts[i].title +
+                `<a href = ` + data.podcasts[i].feed_url + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >test</a>` +
+                `<img src = ` + data.podcasts[i].image_url + ` class= "responsive">` +
+                `</div>`)
+        }
+    })
 }
 
 
 
 
 function $getCategoryUrl(data, $appendCategoryTitle) {
-    for (var i = 0; i < data.podcasts.length; i++){
+    for (var i = 0; i < data.podcasts.length; i++) {
         var $title = $appendCategoryTitle;
         var $getUrlId = data.podcasts[i].podcasts_url;
         var $getCurl = "https://feedwrangler.net" + $getUrlId;
-
-
-
 
     }
 }
@@ -96,62 +84,3 @@ function $getImg(data) {
 
     }
 }
-
-
-
-// function displayResults(results) {
-//   var $movies = $('.movies');
-//   for (var i = 0; i < results.Search.length; i++) {
-//     var $p = $('<p data-imdbid="' + results.Search[i].imdbID + '">' + results.Search[i].Title + '</p>');
-//     $p.click(showMovieDetails);
-//     $movies.append($p);
-//     moviesByID[results.Search[i].imdbID] = results.Search[i];
-//   }
-// }
-
-
-
-
-
-
-// // //     }
-//     $('select').on('change', function() {
-//         if ($('#role option:selected').val() === 'Tank') {
-//             $('img').attr('src', data[0].img);
-//         } else if ($('#role option:selected').val() === 'Support') {
-//             $('img').attr('src', data[1].img);
-//         } else if ($('#role option:selected').val() === 'Defense') {
-//             $('img').attr('src', data[2].img);
-//         } else if ($('#role option:selected').val() === 'Attack') {
-//             $('img').attr('src', data[3].img);
-//         }
-//     });
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-
-
-//
-// });
-// $('.save').click(function(){
-//   event.preventDefault();
-//
-//   var obj ={}
-//   obj.firstName = $('#fname').val();
-//   obj.lastName = $('#lname').val();
-//   obj.role = $("#role option:selected").val();
-//   console.log(obj)
-//   $.post('http://galvanize-student-apis.herokuapp.com/gpersonnel/users', obj,function(data){
-//     $('.save-status').css('display', 'block')
-//     $('.save-status').text(data.message)
-//     $(".save-status").fadeIn(500).delay(2000).show(0).fadeOut(500);
-// //set to default // add time lapse
-//
-//  });
