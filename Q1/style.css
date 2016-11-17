@@ -1,1 +1,11 @@
-
+h3.showTop {
+    text-align: center;
+}
+.show {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+h1.header.center.white-text.text-lighten-2 {
+    font-size: 10em;
+}
