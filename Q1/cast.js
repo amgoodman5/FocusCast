@@ -48,7 +48,7 @@ $.get("https://galvanize-cors.herokuapp.com/https://feedwrangler.net/api/v2/podc
             var selected = $(this).val();
                 $getPodCast(selected)
               $('.present').html('');
-              $('.present').append('<h3>' + `Top 3 podcasts `  + '</h3>')
+              $('.present').append('<h4>' + `HERE THEY ARE! `  + '</h4>')
             // }
 
     })
@@ -63,9 +63,9 @@ $.get("https://galvanize-cors.herokuapp.com/https://feedwrangler.net/api/v2/podc
               var image = `<img src = `  + data.podcasts[i].image_url +  ` class= "responsive">`;
               var title =  `<p class ="title">` + data.podcasts[i].title + `</p>`;
                var button = `<a href =` +  `"http://www.stitcher.com/stitcher-list/all-podcasts-top-shows"`
-               + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >More</a>`;
-                var card = `<a href =` +  `"http://www.stitcher.com/stitcher-list/all-podcasts-top-shows">`
-                + `<div class="card card-panel hoverable">` +   `<div class="card-image">` +
+               + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >FIND & LISTEN</a>`;
+                var card =  `<a href =` +  `"http://www.stitcher.com/stitcher-list/all-podcasts-top-shows">`+ `<div class = "col s4 m4">`
+                + `<div class="card card-panel hoverable ">` +   `<div class="card-image">` +
                 image + `<div class="card-action">` + title + button + `</a>` ;
 
                 $('.show').append(card);
