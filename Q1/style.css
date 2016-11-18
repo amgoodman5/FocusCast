@@ -118,12 +118,11 @@ footer.page-footer {
 
 div#form {
     border-radius: 5px;
-    background: rgba(0,0,0,0.1);
+    background: rgb(30, 107, 136);
     padding: 5%;
     min-width: 100%;
-    box-shadow: 1px 1px 2px 1px #d0d0d0;
+    box-shadow: 1px 1px 2px 1px #225378;
 }
-
 input.select-dropdown {
     color: #eb7f00;
     font-size: 1.5rem!important;
