@@ -60,7 +60,7 @@ $.get("https://galvanize-cors.herokuapp.com/https://feedwrangler.net/api/v2/podc
         var url = "https://galvanize-cors.herokuapp.com/https://feedwrangler.net/" + url;
         $.get(url, function(data) {
             for (var i = 0; i < 3; i++) {
-              var image = `<img src = `  + data.podcasts[i].image_url +  ` class= "responsive">`;
+              var image = `<img src = `  + data.podcasts[i].image_url +  ` class= "responsive" >`;
               var title =  `<p class ="title">` + data.podcasts[i].title + `</p>`;
                var button = `<a href =` +  `"http://www.stitcher.com/stitcher-list/all-podcasts-top-shows"`
                + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >FIND & LISTEN</a>`;
