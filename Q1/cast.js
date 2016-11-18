@@ -11,6 +11,8 @@ $(document).ready(function() {
     $('select').material_select();
 
 
+
+
 });
 
 
@@ -32,36 +34,48 @@ $.get("https://galvanize-cors.herokuapp.com/https://feedwrangler.net/api/v2/podc
                 // $getPodCast(category.podcasts[i].podcasts_url)
             $('select').append(option)
 
+
+
         }
     }
 
     function $returnSelected() {
-        $("select").change(function() {
+        $('select').change(function() {
             var selected = $(this).val();
-            for (var i = 0; i < selected.length; i++) {
-                $getPodCast(selected[i])
-                $('.show').append( '<h3 class = "showTop">' + "Here are the top 3 Podcasts for this category" + '</h3>')
-            }
+            console.log(selected)
+            // for (var i = 0; i < selected.length; i++) {
 
-        });
-    }
+                $getPodCast(selected)
+              $('.present').html('');
+              $('.present').append('<h4>' + "Here are the top 3 podcasts for this category" + '</h4>')
+            // }
+
+    })
+}
+
 
     function $getPodCast(url) {
+  $('.show').html('');
 
-        event.preventDefault();
+
         var url = "https://galvanize-cors.herokuapp.com/https://feedwrangler.net/" + url;
+
         $.get(url, function(data) {
+
             for (var i = 0; i < 3; i++) {
-              var image = `<img src = `  + data.podcasts[i].image_url +  `  class= "responsive">`;
-               var feed = data.podcasts[i].feed_url;
-               var titles = `<h3class = "card-title">` + data.podcasts[i].title  + `</h3>`;
-               var button = `<a href = ` + data.podcasts[i].feed_url + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >test</a>`;
-                var card = `<div class="container">` + `<div class="row">` + ` <div class="col s12 m6 l8">` + `<div class="card">` +   `<div class="card-image">` +  image + titles + `<div class="card-action">` + button;
-
-
+              var image = `<img src = `  + data.podcasts[i].image_url +  ` class= "responsive">`;
+              var title =  `<p class ="title">` + data.podcasts[i].title + `</p>`;
+               var button = `<a href =` +  `"http://www.stitcher.com/stitcher-list/all-podcasts-top-shows"` + `id = "download-button" class="btn-large waves-effect waves-light teal lighten-1" ` + ` >More</a>`;
+                var card = `<a href =` +  `"http://www.stitcher.com/stitcher-list/all-podcasts-top-shows">` + `<div class="card card-panel hoverable">` +   `<div class="card-image">` +
+                image + `<div class="card-action">` + title + button + `</a>` ;
+                $('.show' ).fadeIn( "slow" );
                 $('.show').append(card);
 
+
+
+
             }
+
         })
     }
 })
