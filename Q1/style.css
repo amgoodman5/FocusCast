@@ -20,7 +20,7 @@ h4 {
     font-size: 2.92rem;
     line-height: 110%;
     margin: -0.54rem 0px 0;
-    color: #ff6d00;
+    color: #eb7f00;
 }
 
 
@@ -135,6 +135,7 @@ input.select-dropdown {
     color: #ff6d00;
     min-height: 5em;
     max-height: 5em;
+    overflow: hidden;
 }
 
 .card .card-image img {
